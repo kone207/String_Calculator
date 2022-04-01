@@ -14,12 +14,13 @@ namespace String_Calculator
             Assert.Equal(0, result);
         }
         [Theory]
-        [InlineData("1", 1)]
-        [InlineData("2", 2)]
-        public void ReturnOneGivenStringWith1(string numbers, int expectedOutput)
+        [InlineData("1,2", 3)]
+        [InlineData("2,3", 5)]
+
+        public void ReturnSumGivenStringWithTwoCommaSeparatedNumbers(string numbers, int expectedOutput)
         {
             var calculator = new StringCalculator();
-            var result = calculator.Add("1");
+            var result = calculator.Add(numbers);
 
             Assert.Equal(expectedOutput, result);
         }

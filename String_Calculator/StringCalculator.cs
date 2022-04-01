@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace String_Calculator
 {
@@ -7,7 +8,11 @@ namespace String_Calculator
         internal object Add(string numbers)
         {
             if (String.IsNullOrEmpty(numbers)) return 0;
-            return int.Parse(numbers);
+            var result = numbers.Split(',')
+                .Select(s => int.Parse(s))
+                .Sum();
+            return result;
+           
         }
     }
 }
