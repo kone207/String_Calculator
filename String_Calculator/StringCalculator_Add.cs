@@ -57,6 +57,18 @@ namespace String_Calculator
 
             Assert.Equal(expectedOutput, result);
         }
+        [Theory]
+        [InlineData("//;\n1;2;3", 6)]
+        [InlineData("1\n2\n3", 6)]
+        [InlineData("1,2\n3", 6)]
+
+        public void ReturnSumGivenStringWithCustomDelimeter(string numbers, int expectedOutput)
+        {
+            var calculator = new StringCalculator();
+            var result = _calculator.Add(numbers);
+
+            Assert.Equal(expectedOutput, result);
+        }
 
 
     }
