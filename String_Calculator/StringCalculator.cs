@@ -15,16 +15,22 @@ namespace String_Calculator
             if (numbers.StartsWith("//"))
             {
                 var splitInput = numbers.Split('\n');
-                var newDelimiter = splitInput.First().Trim();
+                var newDelimiter = splitInput.First().Trim('/');
 
                 numberString = String.Join('\n', splitInput.Skip(1));
                 delimiters.Add(Convert.ToChar(newDelimiter));
             }
+            var numberList = numberString.Split(delimiters.ToArray()).Select(s => int.Parse(s));
+            var negatives = numberList.Where(n => n < 0);
 
-           
-            var result = numbers.Split(delimiters.ToArray())
-                .Select(s => int.Parse(s))
+            if (negatives.Any())
+            {
+                string negativeString = String.Join(',', negatives.Select(n => n.ToString()));
+                throw new Exception($"Negatives not allowed: {negativeString}");
+            }
+            var result = numberList
                 .Sum();
+
             return result;
            
         }

@@ -63,11 +63,23 @@ namespace String_Calculator
         [InlineData("1,2\n3", 6)]
 
         public void ReturnSumGivenStringWithCustomDelimeter(string numbers, int expectedOutput)
-        {
-            var calculator = new StringCalculator();
+        {            
             var result = _calculator.Add(numbers);
 
             Assert.Equal(expectedOutput, result);
+        }
+        [Theory]
+        [InlineData("-1,2", "Negatives not allowed: -1")]
+        [InlineData("-1,-2", "Negative not allowed: -1,-2")]
+
+        public void ThrowsGivenNegativeInputs(string numbers, string expectedMessage)
+        {
+            Action action =()=> _calculator.Add(numbers);
+
+            var ex = Assert.Throws<Exception>(action);
+            var result = _calculator.Add(numbers);
+
+            Assert.Equal(expectedMessage, ex.Message);
         }
 
 
