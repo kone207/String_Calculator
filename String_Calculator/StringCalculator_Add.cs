@@ -15,6 +15,7 @@ namespace String_Calculator
         }
         [Theory]
         [InlineData("1", 1)]
+        [InlineData("2", 2)]
         public void ReturnOneGivenStringWith1(string numbers, int expectedOutput)
         {
             var calculator = new StringCalculator();
